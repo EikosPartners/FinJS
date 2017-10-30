@@ -1,0 +1,37 @@
+Please install docker first and have it running in linux mode (if installed on windows), this should be the default.
+Using powershell from this directory, run:
+
+docker-compose up --build
+
+or after you have done the above you can start in background with:
+
+docker-compose start
+
+then to stop:
+
+docker-compose stop
+
+to connect to a container that is running, use:
+docker ps -a
+to determine which container to connect to
+
+then:
+docker exec -i -t [container name] /bin/bash
+to connect, if where epwebcatfinjsdemo_server_1 is the container name:
+docker exec -i -t epwebcatfinjsdemo_server_1 /bin/bash
+you will now be in a bash shell on the running docker container.
+
+--notes on docker builds if you don't want to use compose
+for web:
+cd web
+docker build -t eikos/fsweb .
+docker run -d  -p 3001:3000 eikos/fsweb
+
+docker build -t eikos/fsserver .
+docker run -t -p 4081:4080 eikos/fsserver
+
+#mongo
+docker pull mongo
+docker run --name mongo_db_1 -d mongo
+
+

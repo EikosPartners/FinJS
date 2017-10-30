@@ -1,0 +1,22 @@
+#use a prebuilt install as a base
+FROM node:boron
+
+#RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+
+#where were going to do the install
+WORKDIR /install
+
+#copy over our package
+COPY package.json .
+
+#install
+RUN npm install 
+
+#copy everything else
+COPY . .
+
+EXPOSE 4080
+CMD "npm" "start"
+
+
+

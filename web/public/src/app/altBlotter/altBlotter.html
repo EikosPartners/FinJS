@@ -1,0 +1,49 @@
+<div id="emsblotter_altBlotter_template">
+	<style type="text/css">
+		html,body {
+			padding: 0;
+			margin: 0;
+		}
+		body {
+			border: 1px solid #3f3f3f;
+			border-radius: 2px;
+			width: calc(100% - 2px);
+			height: calc(100% - 2px);
+		}
+		html {
+			width: 100%;
+			height: 100%;
+		}
+
+		#section,
+		#section>div,
+		.dataTables_scroll {
+			height: 100%;
+		}
+
+		#DataTables_Table_1_wrapper {
+			height: calc(100% - 23px);
+			overflow: auto;
+		}
+
+		.dataTables_scrollBody {
+			height: calc(100% - 50px);
+			overflow: auto;
+		}
+	</style>
+
+
+	<div class="orders-grid-header ui-widget-header window-drag">
+	   	<span>Blotter 2</span>
+	    <div class="blotterUsernameContainer" data-bind="text: username"></div>
+	    <div class="blotterEnvContainer" data-class="environment-name"></div>
+	    <div class="iconSettings ui-ignore-drag disconnected-grid-overlay-above" data-class="app-icon" title="Application Settings and Options" style="right: 65px"></div>
+	    <div class="iconDocking ui-ignore-drag disconnected-grid-overlay-above" data-bind="visible: window.isDocked, click: undock" style="right: 85px"></div>
+	    <div class="iconMax ui-ignore-drag disconnected-grid-overlay-above" data-bind="click: maximize"></div>
+	    <div class="iconMin ui-ignore-drag disconnected-grid-overlay-above" data-bind="click: minimize"></div>
+	    <div class="iconClose ui-ignore-drag disconnected-grid-overlay-above" data-bind="click: close"></div>
+	</div>
+
+	<!-- ko template: { name: 'metadata_items_template', data: mappedChildNodes } -->
+	<!-- /ko -->
+</div>

@@ -1,0 +1,44 @@
+// Blotter Orders Package proto file
+// This is an example and is not actively used as the app generates it at runtime based on the dataset
+package blotterorderspackage;
+syntax = "proto3";
+
+message BlotterOrder {
+    string account = 1;
+    string trader = 2;
+    string strategy = 3;
+    string counterparty = 4;
+    string ric = 5;
+    string bbg = 6;
+    string type = 7;
+    int32 orderid = 8;
+    int32 quantity = 9;
+    double price = 10;
+    int32 filled = 11;
+    int32 open = 12;
+    double limitprice = 13;
+    double filledprice = 14;
+    string venue = 15;
+    string gateway = 16;
+    string currency = 17;
+    string side = 18;
+    int32 originalorderid = 19;
+    string rejected = 20;
+    string rejectedreason = 21;
+    string state = 22;
+    string entrymethod = 23;
+    string transacttime = 24;
+    string placementtime = 25;
+    string emstime = 26;    
+}
+
+message BlotterOrders {
+    int32 start = 1;
+    int32 end = 2;
+    int32 total_count = 3;          //totalCount
+    int32 filtered_count = 4;       //filteredCount
+    repeated BlotterOrder data = 5;
+    double debug_start_time = 6;    //debugStartTime
+    double debug_end_time = 7;      //debugEndTime
+    optional int32 performanceKey = 8 [default = -1];
+}

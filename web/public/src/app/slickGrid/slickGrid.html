@@ -1,0 +1,19 @@
+<div id="slickGrid_template">
+	<div class="orders-grid-header ui-widget-header window-drag" style="font-size: 14px; font-weight: normal">
+		<span>Records: </span><span data-bind="text: recordsStart"></span><span> - </span><span data-bind="text: recordsEnd"></span>
+		<span class="vertical-bar">|</span>
+		<span>Total Row Count: </span><span data-bind="text: totalRowCount"></span>
+		<span class="vertical-bar">|</span>
+		<span>Filtered Row Count: </span><span data-bind="text: filteredRowCount"></span>
+	</div>
+
+	<div class="busy-indicator-wrapper">
+		<div class="busy-indicator-grid" data-class="grid-binding"></div>
+		<object class="busy-indicator-svg"
+				data-bind="visible:isScrolling"
+				type="image/svg+xml" 
+				data="../images/base/spinner-cogs.svg" >
+			Loading Data...
+		</object>
+	</div>
+</div>

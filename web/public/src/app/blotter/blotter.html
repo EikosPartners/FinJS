@@ -1,0 +1,32 @@
+<div id="emsblotter_blotter_template">
+	<div class="orders-grid-header ui-widget-header window-drag">
+	   	<span style="font-size: 16px">Blotter 1</span>
+
+	   <!-- 	<button style="position: absolute; right: 80px; top: 5px;" data-bind="click: openThemeEditor">Theme Editor</button> -->
+	    <div class="iconDocking ui-ignore-drag disconnected-grid-overlay-above" data-bind="visible: window.isDocked, click: undock" style="right: 85px"></div>
+	    <div class="iconSettings ui-ignore-drag" data-bind="click: openThemeEditor, visible: showIcons">
+			<svg viewBox="0 0 1 1">
+				<use xlink:href="../images/base/iconsVector.svg#iconSettings"></use>
+  			</svg>
+		</div>
+		<div class="iconMin ui-ignore-drag" data-bind="click: minimize, visible: showIcons">
+			<svg viewBox="-0.1 -0.1 1.2 1.2">
+				<use xlink:href="../images/base/iconsVector.svg#iconMin"></use>
+  			</svg>
+		</div>
+	    <div class="iconMax ui-ignore-drag" data-bind="click: maximize, visible: showIcons">
+			<svg viewBox="-0.1 -0.1 1.2 1.2">
+				<use xlink:href="../images/base/iconsVector.svg#iconMax"></use>
+  			</svg>
+		</div>
+	    <div class="iconClose ui-ignore-drag" data-bind="click: close, visible: showIcons">
+			<svg viewBox="-0.1 -0.1 1.2 1.2">
+				<use xlink:href="../images/base/iconsVector.svg#iconClose"></use>
+  			</svg>			
+		</div>
+	</div>
+
+	
+	<!-- ko template: { name: 'metadata_items_template', data: mappedChildNodes } -->
+	<!-- /ko -->
+</div>

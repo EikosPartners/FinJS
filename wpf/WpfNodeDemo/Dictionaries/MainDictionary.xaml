@@ -1,0 +1,150 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfNodeDemo.Views"
+                    xmlns:controls="clr-namespace:WpfNodeDemo.Controls"
+                    xmlns:converters="clr-namespace:WpfNodeDemo.Converters">
+
+    <!--COLORS AND BRUSHES-->
+    <Brush x:Key="WindowBackgroundBrush">Black</Brush>
+    <Brush x:Key="BorderLineBrush">#2E2E2E</Brush>
+    <Brush x:Key="TitleTextBrush">#c0c0c0</Brush>
+
+    <Color x:Key="GridBackgroundColor">Black</Color>
+    <Color x:Key="GridCellFontColor">White</Color>
+    <Color x:Key="GridLineColor">#2E2E2E</Color>
+    <Color x:Key="GridHeaderBackgroundColor">#090909</Color>
+    <Color x:Key="GridHeaderCurrentBackground">#090909</Color>
+    <Color x:Key="GridHeaderFontColor">#ffa800</Color>
+    <Color x:Key="GridHeaderFilterFontColor">#00ffae</Color>
+    <Color x:Key="GridMouseOverRowColor">DimGray</Color>
+
+    <x:Array x:Key="GridAlternatingColorArray" Type="Color">
+        <Color>#090909</Color>
+        <Color>#222222</Color>
+    </x:Array>
+
+    <!--CONVERTERS-->
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:NumberMultipliedByFactorConverter x:Key="SpinnerWidthFactorConverter" Factor=".2" />
+
+    <!--STANDARD ELEMENTS-->
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="75" />
+        <Setter Property="Height" Value="25" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+    <Style TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="Black" />
+    </Style>
+
+    <!--RECTANGLE SPINNER-->
+    <Style x:Key="SpinningRectangle" TargetType="Rectangle">
+        <Setter Property="Fill" Value="Red"/>
+        <Setter Property="Opacity" Value="0.5"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <RotateTransform Angle="0" CenterX="10" CenterY="10" />
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(RotateTransform.Angle)" 
+                                         From="0" To="360" 
+                                         Duration="0:0:5"
+                                         RepeatBehavior="Forever" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--VERTICAL SEPARATOR-->
+    <Style x:Key="VerticalSeparatorStyle" 
+           TargetType="{x:Type Separator}"
+           BasedOn="{StaticResource {x:Type Separator}}">
+        <Setter Property="Margin" Value="4,2" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+
+        <Setter Property="LayoutTransform">
+            <Setter.Value>
+                <TransformGroup>
+                    <TransformGroup.Children>
+                        <TransformCollection>
+                            <RotateTransform Angle="90"/>
+                        </TransformCollection>
+                    </TransformGroup.Children>
+                </TransformGroup>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--WINDOWCHROME WRAPPING BORDER -->
+    <Style x:Key="WindowChromeBorder" TargetType="Border">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource BorderLineBrush}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=WindowState}" Value="Maximized">
+                <Setter Property="BorderThickness" Value="{Binding Source={x:Static SystemParameters.WindowResizeBorderThickness}}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--MAIN WINDOW - WITH TEMPLATE TO USE WINDOWCHROME -->
+    <Style TargetType="{x:Type local:MainWindow}">
+        <Setter Property="FontSize" Value="15"/>
+
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome 
+                    CaptionHeight="35"
+                    GlassFrameThickness="0,0,0,1"
+                    ResizeBorderThickness="5" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:MainWindow}">
+                    <Border Style="{StaticResource WindowChromeBorder}">
+                        <Grid>
+                            <Border VerticalAlignment="Top"
+                                    BorderBrush="{StaticResource BorderLineBrush}" 
+                                    BorderThickness="0,0,0,1">
+                                <Grid>
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}" 
+                                               Margin="4,2,0,0"
+                                               FontFamily="Arial"
+                                               FontWeight="Bold"
+                                               FontSize="17"
+                                               Foreground="{StaticResource TitleTextBrush}"
+                                               VerticalAlignment="Top" HorizontalAlignment="Left" >
+                                        <TextBlock.LayoutTransform>
+                                            <ScaleTransform ScaleX="0.93"/>
+                                        </TextBlock.LayoutTransform>
+                                    </TextBlock>
+                                    <controls:WindowChromeButtons VerticalAlignment="Top" HorizontalAlignment="Right" />
+                                </Grid>
+                            </Border>
+
+                            <Border Background="{StaticResource WindowBackgroundBrush}"
+                                    Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}">
+                                <ContentPresenter Content="{TemplateBinding Content}"  />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

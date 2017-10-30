@@ -1,0 +1,55 @@
+[{
+    "type" : "globalNavigation",
+    "routes": [
+    {
+        "text": "EMS Blotter",
+        "route": "emsblotter/{options*}",
+        "get": "pjson?name=pages/emsblotter{path}",
+        "roleid" : [
+            "emsuser"
+        ]
+    },
+    {
+        "text": "EMS Blotter Tiled",
+        "route": "emsblotter_tile/{options*}",
+        "get": "pjson?name=pages/emsblotter_tile{path}",
+        "roleid" : [
+            "emsuser"
+        ],
+        "inDesktop": false
+    },
+      {
+         "text": "Dashboard",
+         "route": "dashboard/{options*}",
+         "get": "pjson?name=pages/dashboard",
+         "roleid": [
+            "user"
+         ]
+      },
+      {
+         "text": "Help",
+         "route": "help/{options*}",
+         "get": "pjson?name=pages/help",
+         "roleid": [
+            "admin"
+         ]
+     },
+     {
+         "text": "Admin",
+         "route": "admin/{options*}",
+         "get": "pjson?name=pages/admin",
+         "roleid" : [
+             "admin"
+         ]
+     }
+    ]
+},
+{
+    "type": "action",
+    "actionType": "redirect",
+    "classes": "logout",
+    "text": "Logout",
+    "options": {
+        "target": "/auth/logout"
+    }
+}]

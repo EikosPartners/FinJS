@@ -1,0 +1,35 @@
+{
+  "name": "finjs-demo-backend",
+  "version": "0.0.0",
+  "description": "Backend API and Redis Database for the FinJS-Demo",
+  "main": "app.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha ./tests",
+    "test-teamcity": "./node_modules/.bin/mocha ./tests --reporter mocha-teamcity-reporter",
+    "start": "node app.js",
+    "debug": "node-debug ./app.js"
+  },
+  "author": "Dillon Uzar",
+  "dependencies": {
+    "async": "^2.0.1",
+    "asyncawait": "^1.0.6",
+    "bluebird": "^3.4.1",
+    "bufferutil": "^1.2.1",
+    "express": "^4.14.0",
+    "express-dot-engine": "^1.0.7",
+    "mongodb": "^2.2.9",
+    "node-inspector": "^0.12.8",
+    "present": "^1.0.0",
+    "protobufjs": "6.6.0",
+    "redis": "^2.6.2",
+    "ws": "^1.1.1"
+  },
+  "jshintConfig": {
+    "esversion": 6
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "mocha-teamcity-reporter": "^1.1.1"
+  }
+}

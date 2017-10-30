@@ -1,0 +1,19 @@
+[
+    {
+        "username": "admin",
+        "password": "pass",
+        "modules": [
+            "admin"
+        ],
+        "roles": [
+            "admin"
+        ]
+    },
+    {
+        "username": "ems",
+        "password": "",
+        "roles": [
+            "emsuser"
+        ]
+    }
+]

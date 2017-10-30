@@ -1,0 +1,83 @@
+@import "globals";
+@import "normalize";
+
+body {
+    background-color: $primaryColor;
+    color: $textColor;
+}
+
+// HEADER STYLES
+// TODO: Remove margin-top by removing viewport from globalNavigation
+.logout {
+    float: right;
+    display: inline-block;
+    padding: 10px;
+}
+
+//TODO: Move these styles to global navigation
+//(and refactor, use semantic classnames, not div selector)
+.nav-inner {
+    display: inline-block;
+    padding: 10px;
+}
+
+.nav-inner > div {
+    display: inline-block;
+
+    // TODO:  REFACTOR NAMES!
+    .navlink.af_goLink {
+        background-color: $primaryColor;
+
+        &:hover {
+            background-color: #555;
+        }
+
+        &.active {
+            background-color: #444;
+            cursor: default;
+        }
+    }
+
+}
+
+//TODO: Move these styles to action
+//(and refactor, use variables);
+input[type="button"], button {
+    //font-family: $font-medium;
+    padding: 9px 15px;
+    background-color: #444;
+    font-size: 11px;
+    text-transform: uppercase;
+    border: 0;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 0;
+}
+
+//TODO: Move to ListAdvanced
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+// VIEWPORT STYLES
+.viewport {
+	margin: 0px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+@media (min-width: 1366px) {
+    .viewport {
+        width: 1366px !important;
+    }
+}
+
+@media (max-width: 1366px) {
+    .viewport {
+        width: 100% !important;
+    }
+}

@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="WpfNodeDemo.Controls.GridSortIndicator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="50">
+    
+    <UserControl.Resources>
+        <Style x:Key="SortTriangleAscStyle" TargetType="Polygon">
+            <Setter Property="Points" Value="0,7 14,7 7,0 0,7"/>
+            <Setter Property="Fill" Value="{Binding Fill, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+            <Setter Property="Stroke" Value="{Binding Stroke, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+        </Style>
+
+        <Style x:Key="SortTriangleDescStyle" TargetType="Polygon">
+            <Setter Property="Points" Value="0,0 14,0 7,7 0,0"/>
+            <Setter Property="Fill" Value="{Binding Fill, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+            <Setter Property="Stroke" Value="{Binding Stroke, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+        </Style> 
+        
+    </UserControl.Resources>
+    
+    <Canvas x:Name="uc_SortIndicator" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Polygon x:Name="uc_Polygon_Asc"
+                 Style="{StaticResource SortTriangleAscStyle}"
+                 Stretch="Fill"
+                 Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"
+                 Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}" />
+
+        <Polygon x:Name="uc_Polygon_Desc"
+                 Visibility="Collapsed"
+                 Style="{StaticResource SortTriangleDescStyle}"
+                 Stretch="Fill"
+                 Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}"
+                 Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType={x:Type Canvas}}}" />
+    </Canvas>
+</UserControl>

@@ -1,0 +1,908 @@
+/* DOTJS TEMPLATE */
+/*add gray border around window*/
+
+
+
+.ui-widget-header {
+    background: [[=it.backgroundColor]];
+}
+
+/*NOTE: This should be optimal; only include CSS that contains variables.  Put 'static' css in global.css*/
+html:not(.noborder) {
+    border-color: [[=it.windowBorderColor]];
+}
+
+body {
+    background: [[=it.backgroundColor]];
+    scrollbar-face-color: [[=it.utils.brightenOrDarken(it.gridCellBackground, 60)]];
+    scrollbar-shadow-color:[[=it.utils.brightenOrDarken(it.gridCellBackground, 60)]];
+    scrollbar-highlight-color: [[=it.utils.brightenOrDarken(it.gridCellBackground, 60)]];
+    scrollbar-3dlight-color: [[=it.utils.brightenOrDarken(it.gridCellBackground, 60)]];
+    scrollbar-darkshadow-color: [[=it.utils.brightenOrDarken(it.gridCellBackground, 60)]];
+    scrollbar-track-color: [[=it.backgroundColor]];
+    scrollbar-arrow-color: [[=it.backgroundColor]];
+}
+
+.offsetBackground {
+    background: [[=it.utils.brightenOrDarken(it.backgroundColor,10)]];
+    border-left-color:[[=it.utils.brightenOrDarken(it.backgroundColor,20)]];
+}
+
+.grid-canvas {
+    border-left-color: [[=it.gridBorderColor]];
+	color: [[=it.gridTextColor]];
+}
+
+.gridTitle {
+    color: [[=it.frontColor]];
+}
+
+.ui-state-default.slick-header-column.default-column,
+.ui-state-default.slick-header-column.slick-header-column-sorted,
+.watchlist-defaults-showing {
+    /*background-color: [[=it.headerSortedBackground]]; DISABLED TO MATCH WPF STYLE*/ 
+    background-color: [[=it.gridHeaderBackground]];    
+}
+
+.watchlist-defaults-showing {
+    color: [[=it.contrastColor]];
+}
+
+.ui-state-default.slick-headerrow, .ui-state-default.slick-header  {
+    border-left-color: [[=it.gridBorderColor]];
+}
+
+
+/*CONTEXT MENU AND ICONS*/
+
+#contextMenu {
+    background: [[=it.backgroundColor]];
+    color: [[=it.frontColor]];
+}
+#contextMenu li:not(.disabled):hover {
+    background-color:[[=it.buttonBackgroundColor]];
+    color: [[=it.frontColor2]];
+}
+
+#contextMenu li[data-icon="save"]::before, #contextMenu li[data-icon="load"]::before, #contextMenu li[data-icon="close"]::before,
+#contextMenu li[data-icon="min"]::before, #contextMenu li[data-icon="restore"]::before, #contextMenu li[data-icon="shutdown"]::before {
+    background-color: [[=it.frontColor]];
+}
+#contextMenu li[data-icon="save"]::before { -webkit-mask-image: url('[[=it.iconPath]]/iconSave.png'); }
+#contextMenu li[data-icon="load"]::before { -webkit-mask-image: url('[[=it.iconPath]]/iconLoad.png'); }
+#contextMenu li[data-icon="close"]::before { -webkit-mask-image: url('[[=it.iconPath]]/iconClose.png'); }
+#contextMenu li[data-icon="min"]::before { -webkit-mask-image: url('[[=it.iconPath]]/iconMin.png'); }
+#contextMenu li[data-icon="restore"]::before { -webkit-mask-image: url('[[=it.iconPath]]/iconRestore.png'); }
+#contextMenu li[data-icon="shutdown"]::before { -webkit-mask-image: url('[[=it.iconPath]]/iconShutdown.png'); }
+
+.progress-bar-done {
+    background-color: [[=it.altProgressBarDone]];
+}
+
+.progress-bar-remaining  {
+    background-color: [[=it.altProgressBarRemaining]]; 
+}
+
+
+/*WEBKIT SCROLLBAR*/
+
+::-webkit-scrollbar-track-piece {
+    background-color: [[=it.backgroundColor]];
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    background-color: [[=it.utils.brightenOrDarken(it.gridCellBackground, 60)]];
+    border-color: [[=it.backgroundColor]];
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    background-color: [[=it.utils.brightenOrDarken(it.gridCellBackground, 60)]];
+    border-color: [[=it.backgroundColor]];
+}
+
+::-webkit-scrollbar-corner {
+    background-color: [[=it.backgroundColor]];
+}
+
+
+/*APP LOGO SETTINGS*/
+
+.mainHeader {
+    background: [[=it.backgroundColor]];
+}  
+
+.EMSLogo {
+    background-image: url('[[=it.iconPath]]/EMSLogo.png');
+}
+
+.EMS-openfin-icon {
+    background-image: url("[[=it.imagePath]]/eikos-logo_245x245.png");
+}
+
+
+.EPLogo {
+    background-image: url('[[=it.iconPath]]/EPLogo.png');
+}
+
+
+/*ORDER TICKET MESSAGES*/
+
+.messageRate {
+    color: [[=it.frontColor]];
+}
+
+.messageCount {
+    color: [[=it.frontColor]];
+}
+
+.messageSelect {
+    color: [[=it.frontColor]];
+}
+
+.messageSelectedRows {
+    color: [[=it.frontColor]];
+}
+
+.messageNewOrder, .messageModifyOrder, .messageCancelAll, .messageCancelSelected, .messageExportAll, .messageClearAll {
+    color: [[=it.frontColor]];
+}
+
+.ticketMessageBarText {
+    color: [[=it.utils.mixColors(it.accentColor, it.utils.brightenOrDarken(it.backgroundColor,70), 70)]]
+}
+
+.ticketMessageBarTextError {
+    color: [[=it.utils.mixColors("red", it.utils.brightenOrDarken(it.backgroundColor,70), 70)]]
+}
+
+/*SLICK GRID STYLES*/
+
+.slick-header-column-dragging {
+    box-shadow: inset 0 0 5px 2px [[=it.utils.brightenOrDarken(it.gridHeaderBackground, 50)]];
+}
+
+.slick-header-column {
+    background-color: [[=it.gridHeaderBackground]];
+}
+
+.slick-header-column.ui-state-default {
+    color: [[=it.contrastColor]];
+    background-color: [[=it.gridHeaderBackground]];
+    border-bottom-color:  [[=it.gridBorderColor]];
+    border-top-color: [[=it.gridBorderColor]];
+    border-right-color: [[=it.gridBorderColor]];
+}
+
+.slick-headerrow-column {
+    background-color: [[=it.gridFilterBackground]];
+}
+
+.slick-headerrow-column input {
+    color: [[=it.filterTextColor]];
+    background-color: [[=it.gridFilterBackground]];
+    border-color: [[=it.gridBorderColor]];
+}
+
+input:focus {
+    border-color: [[=it.filterTextColor]];
+}
+
+.slick-cell {
+    border-right-color: [[=it.gridBorderColor]];
+    border-bottom-color: [[=it.gridBorderColor]];
+}
+
+
+
+/*SLICK GRID COLUMN PICKER POPUP*/
+
+.slick-columnpicker {
+    border-color:[[=it.accentColor]];
+}
+
+.slick-columnpicker-header {
+    color: [[=it.frontColor]];
+}
+
+.slick-columnpicker-list {
+    border-color: [[=it.windowBorderColor]];
+    color: [[=it.frontColor]];
+}
+
+.slick-columnpicker-list .filtered {
+    background-color: [[=
+        (function() {
+            var l = it.utils.luminance(it.backgroundColor);
+            return it.utils.brightenOrDarken(it.backgroundColor, l > 0.1 && l < 0.9 ? 5 : 10);
+        })()
+    ]];
+}
+
+.slick-columnpicker-list .filtered label {
+    color: [[=it.filterTextColor]];
+}
+
+/* BLOTTER BACKGROUND COLORS START */
+
+/****THIS IS WHAT STYLES THE SELECTED CELL/ROW*******/
+.slick-cell.selected {
+    border-top-color: [[=it.accentColor]];
+    border-bottom-color: [[=it.accentColor]];
+} 
+
+.slick-cell.editable, .slick-cell.editable .editor-text {
+  background: [[=it.backgroundColor4]];
+  border-color: [[=it.accentColor]];
+}
+
+.slick-cell.editable, .slick-cell.editable .editor-text {
+    color: [[=it.inputTextColor]];
+}
+
+.slick-cell.filled {
+    background-color: [[=it.utils.brightenOrDarken(it.filledBackground,20)]];
+}
+
+.slick-cell.initial {
+    background-color: [[=it.utils.brightenOrDarken(it.initialBackground,20)]];
+} 
+
+.slick-cell.new {
+    background-color: [[=it.utils.brightenOrDarken(it.newBackground,20)]];
+} 
+
+.slick-cell.cancelled {
+    background-color: [[=it.utils.brightenOrDarken(it.cancelledBackground,20)]];
+} 
+
+.slick-cell.rejected {
+    background-color: [[=it.utils.brightenOrDarken(it.rejectedBackground,20)]];
+} 
+
+.slick-cell.partial {
+    background-color: [[=it.utils.brightenOrDarken(it.partialBackground,20)]];
+}
+
+.stats-first-row .slick-cell {
+    border-bottom-color: [[=it.utils.brightenOrDarken(it.utils.brightenOrDarken(it.gridCellBackground,13),20)]];
+    border-right-color: [[=it.utils.brightenOrDarken(it.utils.brightenOrDarken(it.gridCellBackground,13),20)]];
+    border-top-color: [[=it.utils.brightenOrDarken(it.utils.brightenOrDarken(it.gridCellBackground,13),20)]];
+}
+
+.stats-first-row .slick-cell:before {
+    border-bottom-color: [[=it.utils.brightenOrDarken(it.utils.brightenOrDarken(it.gridCellBackground,13),20)]];
+    border-top-color: [[=it.utils.brightenOrDarken(it.utils.brightenOrDarken(it.gridCellBackground,13),20)]];
+}
+
+.stats-first-row .slick-cell.selected {
+    border-top-color: [[=it.accentColor]];
+    border-bottom-color: [[=it.accentColor]];
+} 
+
+/***    STYLING FOR ROW COLOR WHEN NOT SELECTED    *****/
+
+.slick-row {
+    background-color: [[=it.gridCellBackground]];
+}
+
+.slick-row.odd {
+    background-color: [[=it.utils.brightenOrDarken(it.gridCellBackground,5)]];
+}
+
+.slick-row.stats-first-row {
+    background-color: [[=it.utils.brightenOrDarken(it.gridCellBackground,13)]];
+}
+
+.slick-row.filled {
+    background-color: [[=it.filledBackground]];
+}
+
+.slick-row.initial {
+    background-color: [[=it.initialBackground]];
+}
+
+.slick-row.new {
+    background-color: [[=it.newBackground]];
+}
+
+.slick-row.cancelled {
+    background-color: [[=it.cancelledBackground]];
+    color: [[=it.altCancelledColor]];
+}
+
+.slick-row.rejected {
+    background-color: [[=it.rejectedBackground]];
+}
+
+.slick-row.partial {
+    background-color: [[=it.partialBackground]];
+}
+
+/* BLOTTER BACKGROUND COLORS END */ 
+
+/*Delayed and Stale Data shading*/
+.slick-cell-delayed.stale {
+    background-image:url("[[=it.imagePath]]/dotHatch-Black.png");
+}
+.slick-cell-stale {
+    background-image:url("[[=it.imagePath]]/dotHatch-White.png");
+}
+.stale-warning-message {
+    background-image: url("[[=it.imagePath]]/dotHatch-White.png");
+}
+
+.ui-widget-header {
+    color: [[=it.frontColor]];
+    background: [[=it.uiWidgetHeaderColor]];
+    border-bottom-color: [[=it.gridBorderColor]];
+}
+
+.ui-widget-sub-header {
+    color: [[=it.frontColor]];
+}
+
+/*ICONS AND FILTERING*/ 
+.iconDocking::after, .iconCloseInner::after, .iconCancel::after, .iconClearTicket::after, .iconLoad::after, .iconSave::after,
+.iconFilterOn::after , .iconFilterOff::after, .iconShutDown::after, .iconCancelAll::after, .iconExport::after, .iconClear::after {
+    background-color: [[=it.frontColor]];
+}
+
+.iconParamInfoClose::after {
+    background-color: [[=it.backgroundColor]];
+}
+
+.iconSettings, .iconMin, .iconMax, .iconClose {
+     fill: [[=it.frontColor]];
+}
+
+.iconMax:hover, .iconMin:hover,.iconDocking:hover, .iconClose:hover, 
+.iconClearTicket:hover, .iconLoad:hover, .iconSave:hover, .iconSettings:hover, .iconShutDown:hover {
+    border: 1px solid [[=it.frontColor]];
+    background-color: [[=it.backgroundColor]];
+}
+
+.iconParamInfoClose:hover {
+    border: 1px solid [[=it.backgroundColor]];
+    background-color: [[=it.frontColor]];
+}
+
+.iconMax:active, .iconMin:active, .iconDocking:active, .iconClose:active,
+.iconClearTicket:active, .iconLoad:active, .iconSave:active, .iconSettings:active, .iconShutDown:active {
+    border: 1px solid [[=it.backgroundColor]];
+    background-color: [[=it.automatedParams.buttonActiveBackground]];
+}
+
+.iconParamInfoClose:active {
+    border: 1px solid [[=it.frontColor]];
+    background-color: [[=it.automatedParams.buttonActiveBackground]];
+}
+
+.iconMax:active::after, .iconMin:active::after, .iconDocking:active::after, .iconClose:active::after, 
+.iconClearTicket:active::after, .iconLoad:active::after, .iconSave:active::after, .iconSettings:active::after, .iconShutDown:active::after {
+    background-color: [[=it.backgroundColor]];
+}
+
+.iconParamInfoClose:active::active {
+    background-color: [[=it.frontColor]];
+}
+
+.iconDocking::after { -webkit-mask-image: url('[[=it.iconPath]]/iconDocking.png'); }
+.iconClearTicket::after { -webkit-mask-image: url('[[=it.iconPath]]/iconCancelAll.png'); }
+.iconLoad::after { -webkit-mask-image: url('[[=it.iconPath]]/iconLoad.png'); }
+.iconSave::after { -webkit-mask-image: url('[[=it.iconPath]]/iconSave.png'); }
+.iconFilterOn::after { -webkit-mask-image: url('[[=it.iconPath]]/iconFilterOn.png'); }
+.iconFilterOff::after { -webkit-mask-image: url('[[=it.iconPath]]/iconFilterOff.png'); }
+.iconShutDown::after { -webkit-mask-image: url('[[=it.iconPath]]/iconShutdown.png'); }
+.iconCancel::after { -webkit-mask-image: url('[[=it.iconPath]]/iconClose.png'); }
+.iconParamInfoClose::after { -webkit-mask-image: url('[[=it.iconPath]]/iconClose.png'); }
+.iconCancelAll::after { -webkit-mask-image: url('[[=it.iconPath]]/iconCancelAll.png'); }
+.iconExport::after {-webkit-mask-image: url('[[=it.iconPath]]/iconExport.png');}
+.iconClear::after {-webkit-mask-image: url('[[=it.iconPath]]/iconClose.png');}
+
+.messageCancelAll:active > .iconCancelAll::after {background-color: [[=it.backgroundColor]];}
+.messageExportAll:active > .iconExport::after {background-color: [[=it.backgroundColor]];}
+.messageClearAll:active > .iconClear::after {background-color: [[=it.backgroundColor]];}
+
+.iconCancel {
+    border-color: [[=it.backgroundColor]];;
+}
+.iconCancel:hover {
+    border-color: [[=it.frontColor]];
+} 
+.iconCancel:active {
+    background-color: [[=it.automatedParams.buttonActiveBackground]];
+}
+.iconCancel:active::after {
+    background-color: [[=it.backgroundColor]];
+}
+
+.iconMore {
+    background-image: url('[[=it.iconPath]]/iconMore.png');
+}
+.iconSelect {
+    background-image: url('[[=it.iconPath]]/iconSelect.png');
+}
+ 
+.filterOn {
+    background: [[=it.filterTextColor]];
+    color: [[=it.backgroundColor]];
+}
+.filterOnText {
+    color: [[=it.filterTextColor]];
+}
+
+.iconArrowLeft {
+    background-image: url('[[=it.iconPath]]/iconArrow.png');
+}
+.iconArrowRight {
+    background-image: url('[[=it.iconPath]]/iconArrow.png');
+}
+
+
+/*SLICK GRID SORTING*/
+
+.slick-sort-indicator::after {
+/*    -webkit-mask-image: url('[[=it.iconPath]]/sort.png');
+    background-color: [[=it.contrastColor]];*/
+}
+
+.slick-sort-indicator-desc::after {
+    background-image: url('[[=it.iconPath]]/sort_desc.svg');
+}
+
+.slick-sort-indicator-asc::after {
+    background-image: url('[[=it.iconPath]]/sort_asc.svg');
+}
+
+.slick-header-sortable {
+    background-color: [[=it.backgroundColor]];
+    border-right-color: [[=it.gridBorderColor]];
+}
+
+/*ORDER TICKET BUTTONS*/
+
+#quantityGroupBox, .ticketGroupBox {
+    background-color: [[=it.utils.brightenOrDarken(it.backgroundColor,7)]];
+}
+
+.arrow-desc::after {
+    background-image: url('[[=it.iconPath]]/sort-desc.png');
+}
+
+.arrow-asc::after {
+    background-image: url('[[=it.iconPath]]/sort-asc.png');
+}
+
+.iconBuy {
+    background: url('[[=it.iconPath]]/iconBuy.png') no-repeat;
+}
+
+.iconSell {
+    background: url('[[=it.iconPath]]/iconSell.png') no-repeat;
+}
+
+.styled-checkbox,
+.styled-checkbox:checked,
+.styled-checkbox:checked:after {
+    background-color: [[=it.backgroundColor4]];
+    color: [[=it.inputTextColor]];
+}
+
+.paramInfoIcon {
+    background-color: [[=it.frontColor]];
+    color: [[=it.backgroundColor]];
+    border-color: [[=it.backgroundColor]];
+}
+
+.paramInfoIcon:hover {
+    border-color: [[=it.accentColor]];
+}
+
+#paramInfoBox {
+    border-color: [[=it.accentColor]];
+    background-color: [[=it.frontColor]];
+    color: [[=it.backgroundColor]];
+    /*background-color: [[=it.utils.brightenOrDarken(it.backgroundColor,7)]];*/
+}
+
+/* TABS */
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+    color: [[=it.frontColor]];
+}
+
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+    color: [[=it.frontColor]];
+}
+
+.ui-tabs.ui-widget-content {
+    border-color: [[=it.windowBorderColor]];
+    color: [[=it.frontColor]];
+    background-color: [[=it.backgroundColor]];
+}
+
+.ui-widget-content a {
+    color: [[=it.frontColor]];
+}
+
+.ui-tabs-anchor input {
+    background-color: [[=it.backgroundColor4]];
+    color: [[=it.frontColor]];
+}
+
+.ui-tabs .ui-tabs-nav li {
+    border-color: [[=it.utils.brightenOrDarken(it.uiWidgetHeaderColor,50)]];
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    border-color: [[=it.utils.brightenOrDarken(it.uiWidgetHeaderColor, 50)]];
+}
+
+.ui-tabs .ui-tabs-nav li input {
+    color: [[=it.filterTextColor]];
+}
+
+.ui-tabs .ui-tabs-nav .add:hover {
+    border-color: [[=it.frontColor]];
+    background-color: [[=it.utils.brightenOrDarken(it.buttonBackgroundColor, 20)]];
+}
+
+.ui-tabs-header-row{
+    background-color: [[=it.uiWidgetHeaderColor]];
+    border-bottom-color: [[=it.uiWidgetHeaderColor]];
+}
+
+.ui-tabs-content-container{
+    border-top-color: [[=it.utils.brightenOrDarken(it.uiWidgetHeaderColor,50)]];
+}
+
+
+/* filters */
+
+.slick-filter-popup input, .slick-filter-popup select {
+    color: [[=it.frontColor]];
+    background: [[=it.backgroundColor4]];
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 15)]];
+}
+
+
+.select-wrapper::after {
+    -webkit-mask-image: url('[[=it.iconPath]]/iconDrop.png');
+    background-color: [[=it.inputTextColor]];
+}
+
+.select-wrapper.disabled select {
+    opacity: 1;
+}
+
+.popupColorErrorMessage {
+    background-color: [[=it.utils.brightenOrDarken(it.backgroundColor,20)]];
+    color: [[=it.utils.mostReadableError(it.utils.brightenOrDarken(it.backgroundColor,20))]];
+}
+
+.numberFilter {
+    background: [[=it.backgroundColor]];
+    border-color: [[=it.accentColor]];
+    color: [[=it.frontColor]];
+}
+
+.numberFilter td {
+    background: [[=it.backgroundColor]];
+    color: [[=it.frontColor]];
+}
+
+.numberFilterBox {
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor,15)]];
+}
+
+.listFilter {
+    background: [[=it.backgroundColor]];
+    border-color: [[=it.accentColor]];
+    color: [[=it.frontColor]];
+}
+
+.listFilterBox {
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor,15)]];
+}
+
+.select-all {
+    color: [[=it.contrastColor]];
+}
+
+.button, .add-button, .clearButton {
+    color: [[=it.frontColor2]];
+    background: [[=it.buttonBackgroundColor]];
+    border-color: [[=it.utils.brightenOrDarken(it.buttonBackgroundColor, 20)]];
+}
+
+.button:hover:enabled, .add-button:hover:enabled {
+    background-color: [[=it.utils.brightenOrDarken(it.buttonBackgroundColor, 10)]];
+}
+
+.button:active:enabled, .add-button:active:enabled {
+    color: [[=it.automatedParams.buttonActiveFrontColor]];
+    background: [[=it.automatedParams.buttonActiveBackground]];
+}
+
+.headerButton:hover:not(.disabled), .headerButton:focus:not(.disabled) {
+    border-color: [[=it.frontColor]];
+    background: [[=it.utils.brightenOrDarken(it.buttonBackgroundColor, 10)]];
+}
+
+.headerButton:active:not(.disabled) {
+    background: [[=it.automatedParams.buttonActiveBackground]];
+    color: [[=it.automatedParams.buttonActiveFrontColor]];
+}
+
+.username {
+    color: [[=it.frontColor]];
+}
+
+.environment {
+    color: [[=it.frontColor]];
+}
+
+label {
+    color: [[=it.frontColor]];
+}
+
+h3 {
+    color: [[=it.utils.brightenOrDarken(it.frontColor,20)]];
+}
+
+table, tbody, tr, td {
+    color: [[=it.frontColor]];
+}
+
+tbody, tr {
+    background: [[=it.backgroundColor]];
+}
+tr.selected {
+    background: [[=it.utils.brightenOrDarken(it.backgroundColor,20)]];
+    border-top-color: [[=it.utils.brightenOrDarken(it.backgroundColor,35)]];
+    border-bottom-color: [[=it.utils.brightenOrDarken(it.backgroundColor,35)]];
+}
+tr:hover:not(.selected) {
+    background: [[=it.utils.brightenOrDarken(it.backgroundColor,10)]];
+}
+
+
+
+/*THEME GENERATOR*/
+
+.themeColor {
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor,28)]];
+}
+
+#picker-indicator {
+    border-color: [[=it.utils.whiteOrBlackOpposite(it.backgroundColor)]];
+    background-color: [[=it.utils.whiteOrBlack(it.backgroundColor)]];
+}
+#slider-indicator {
+    border-color:  [[=it.utils.whiteOrBlackOpposite(it.backgroundColor)]];
+}
+
+.themeControlsGroup {
+    color: [[=it.frontColor]];
+    border-bottom-color: [[=it.utils.brightenOrDarken(it.backgroundColor,20)]];
+}
+
+#picker-wrapper {
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor,20)]];
+}
+#slider-wrapper {
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor,20)]];
+}
+
+
+
+/*Validation Fields*/
+.validationFields input, .validationFields select {
+    color: [[=it.inputTextColor]];
+    background: [[=it.backgroundColor4]];
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 15)]];
+}
+
+.validationFields input:focus, .validationFields select:focus {
+    border-color: [[=it.accentColor]];
+    outline-color: [[=it.accentColor]];
+}
+
+.validationFields .input-wrapper {
+    background-image: url('[[=it.iconPath]]/iconDrop.png') !important;
+    background-color: [[=it.backgroundColor]] !important;
+}
+
+
+/* BUY SELL BUTTONS */
+.buyButton, .sellButton, .sellShortButton {
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 50)]];
+}
+
+.buyButton:focus {
+    border-color: [[=it.utils.brightenOrDarken('#29489b', 90)]];
+    outline-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 90)]];
+}
+.sellShortButton:focus {
+    border-color: [[=it.utils.brightenOrDarken('#A57709', 90)]];
+    outline-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 90)]];
+}
+.sellButton:focus {
+    border-color: [[=it.utils.brightenOrDarken('#A57709', 90)]];
+    outline-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 90)]];
+}
+
+
+/* BUY SELL TICKERS */
+.buyTicker {
+    color: [[=it.bidPriceColor]] !important;
+}
+
+.buyTicker label {
+    color: [[=it.frontColor]];
+}
+
+.buyTicker.delayedData label {
+    color: [[=it.automatedParams.delayedDataLabelColor]];
+}
+
+.buyTicker.delayedData .bidPrice {
+    color: [[=it.automatedParams.delayedDataBidColor]];
+}
+
+.sellTicker {
+    color: [[=it.askPriceColor]] !important;
+}
+
+.sellTicker label {
+    color: [[=it.frontColor]];
+}
+
+.sellTicker.delayedData label {
+    color: [[=it.automatedParams.delayedDataLabelColor]];
+}
+
+.sellTicker.delayedData .askPrice {
+    color: [[=it.automatedParams.delayedDataAskColor]];
+}
+
+.buyTicker.delayedData, .sellTicker.delayedData {
+    border-top-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 50)]];
+    border-bottom-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 50)]];
+}
+
+.buyTicker.delayedData {
+    border-left-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 50)]];
+}
+
+.sellTicker.delayedData {
+    border-right-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 50)]];
+}
+
+#delayedDataKey {
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 50)]];
+}
+
+.select2, .select2 input, .select2-container, .select2-no-results, .select2-result, .select2-result-label, .select2-input, .select2-chosen {
+    color: [[=it.inputTextColor]] !important;
+}
+
+.select2-container .select2-choice .select2-arrow b::after {
+    -webkit-mask-image: url('[[=it.iconPath]]/iconDrop.png');
+    background-color: [[=it.inputTextColor]];
+}
+
+.arrow-asc.numberInput::after {
+    background-image: url('[[=it.iconPath]]/sort-asc.png');
+}
+
+.arrow-desc.numberInput::after {
+    background-image: url('[[=it.iconPath]]/sort-desc.png');
+}
+
+.customDropDown {
+    color: [[=it.inputTextColor]];
+    background-image: url('[[=it.iconPath]]/iconDrop.png') !important;
+    background-color: [[=it.backgroundColor4]] !important;
+    border-color:  [[=it.accentColor]];
+    outline-color: [[=it.accentColor]];
+
+}
+
+::-webkit-input-placeholder { color: [[=it.utils.brightenOrDarken(it.inputTextColor, 35)]] };
+
+/* Autocomplete */
+
+.select2-drop .select2-search .select2-input {
+    color: [[=it.frontColor]];
+    border-color:[[=it.utils.brightenOrDarken(it.backgroundColor,20)]];
+}
+
+.select2-container .select2-choice {
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor,20)]];
+}
+
+.required .select2-choice {
+    border-color: [[=it.accentColor]];
+}
+
+.select2-drop-active {
+    border-color: [[=it.accentColor]];
+}
+
+.select2-drop.select2-drop-above.select2-drop-active {
+    border-top-color: [[=it.accentColor]];
+}
+
+.select2-container-active .select2-choice,
+.select2-container-active .select2-choices {
+    border-color: [[=it.accentColor]];
+}
+
+.select2-container-multi.select2-container-active .select2-choices {
+    border-color: [[=it.accentColor]];
+}
+
+/* Background */
+.select2-drop,
+.select2-container .select2-choice,
+.select2-container .select2-choice .select2-arrow,
+.select2-search input,
+html[dir="rtl"] .select2-search input,
+.select2-search input.select2-active,
+.select2-dropdown-open .select2-choice,
+.select2-results .select2-highlighted ul,
+.select2-container-multi .select2-choices,
+.select2-container-multi .select2-choices .select2-search-field input.select2-active,
+.select2-container-multi .select2-choices .select2-search-choice,
+.select2-container-multi .select2-choices .select2-search-choice-focus,
+.select2-container-multi.select2-container-disabled .select2-choices .select2-search-choice,
+.select2-results .select2-no-results {
+    background-color: [[=it.backgroundColor4]];
+    color: [[=it.frontColor]];
+}
+
+/* Disabled select2 dropdown */
+.select2-container.select2-container-disabled .select2-choice,
+.select2-container.select2-container-disabled .select2-choice .select2-arrow {
+    background-color: [[=it.backgroundColor4]];
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 15)]];
+}
+
+/* Main Icons */
+
+.disconnected-main-spinner {
+    content: url('[[=it.imagePath]]/spin-arrows-white.gif');
+}
+
+/*TOGGLE BUTTONS*/
+
+.toggleButtonGroup div label { 
+    color: [[=it.frontColor]]; 
+    border-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 15)]];
+}
+
+.toggleButtonGroup div > input:not(:checked) + label  {
+    background-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 25)]];
+}
+
+.toggleButtonGroup div > input:checked + label  {
+    background-color: [[=it.accentColor]];
+    color: [[=it.utils.brightenOrDarken(it.accentColor, 75)]];
+}
+
+@-webkit-keyframes toggleOn {
+    0% {
+        color: [[=it.frontColor]];
+        background-color: [[=it.utils.brightenOrDarken(it.backgroundColor, 25)]];
+    }
+
+    100% {
+        color: [[=it.utils.brightenOrDarken(it.accentColor, 75)]];
+        background-color: [[=it.accentColor]];
+    }
+}

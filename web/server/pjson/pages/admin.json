@@ -1,0 +1,124 @@
+[
+    {
+        "type": "admin"
+    },
+    {
+        "type": "template",
+        "template": "admin_template",
+        "classes": "list-advanced",
+        "children": [
+            {
+                "type": "adapter",
+                "id": "adminAdapter",
+                "dataSourceEndpoint" : {
+                    "uri" : "profile/user",
+                    "keyMap": {
+                        "dataKey": "users"
+                    }
+                },
+                "children": [
+                    {
+                        "type" : "listAdvanced",
+                        "id": "users",
+                        "classes" : "list-advanced",
+                        "list": {
+                            "type": "list",
+                            "label" : "Users",
+                            "addButtonRendered": "true",
+                            "options": {
+                                "sendNullIfEmpty": true,
+                                "subscribeToData" : true
+                            },
+                            "items": [
+                                {
+                                    "id" : "username",
+                                    "label" : "Username",
+                                    "type" : "input",
+                                    "inputType" : "text",
+                                    "options" : {
+                                        "readonly": "!isNew",
+                                        "unique": true
+                                    }
+                                },
+                                {
+                                    "id" : "password",
+                                    "label" : "Password",
+                                    "type" : "input",
+                                    "inputType" : "text"
+                                },
+                                {
+                                    "id" : "roles",
+                                    "label" : "Roles",
+                                    "type": "input",
+                                    "inputType" : "checkboxList",
+                                    "classes": "admin-user-roles-checkbox",
+                                    "options": {
+                                        "values": [
+                                            {
+                                                "text" : "Admin",
+                                                "value": "admin"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "id" : "modules",
+                                    "label" : "Modules",
+                                    "type": "input",
+                                    "inputType" : "checkboxList",
+                                    "classes": "admin-user-roles-checkbox",
+                                    "options": {
+                                        "values": [
+                                            {
+                                                "text" : "Admin",
+                                                "value": "admin"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "headerClasses": "admin-delete",
+                                    "type": "DELETE",
+                                    "deleteAction": {
+                                        "type": "action",
+                                        "actionType": "ajax",
+                                        "options": {
+                                            "target": {
+                                                "uri": "profile/user/{{username}}",
+                                                "options": {
+                                                    "type": "DELETE"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "type": "action",
+                        "actionType": "ajax",
+                        "text": "Save",
+                        "buttonClasses": "admin-save-button",
+                        "options": {
+                            "target" : {
+                                "uri": "profile/user",
+                                "options": {
+                                    "type": "PUT"
+                                }
+                            },
+                            "sendDataFromKey" : "users",
+                            "nextActions": [{
+                                "type": "action",
+                                "actionType": "event",
+                                "options": {
+                                    "target": "adminAdapter.refresh"
+                                }
+                            }]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]

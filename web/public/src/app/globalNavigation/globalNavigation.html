@@ -1,0 +1,26 @@
+<div id="globalNavigation_template">
+    <div class="orders-grid-header ui-widget-header window-drag">
+        <span>Global Navigation</span>
+        <div class="iconMin ui-ignore-drag" data-bind="click: minimize">
+			<svg viewBox="-0.1 -0.1 1.2 1.2">
+				<use xlink:href="../images/base/iconsVector.svg#iconMin"></use>
+  			</svg>
+        </div>
+        <div class="iconClose ui-ignore-drag" data-bind="click: close">
+			<svg viewBox="-0.1 -0.1 1.2 1.2">
+				<use xlink:href="../images/base/iconsVector.svg#iconClose"></use>
+  			</svg>
+        </div>
+    </div>
+    <div class="nav-inner window-drag" data-class="globalNavlinks">
+        <div data-bind="css: { on: $data === $parent.activeLink() }">
+            <div>
+                <div>
+                    <button data-bind="text: text, click: function () {
+                            if ($data !== $parent.activeLink()) action();
+                        }, css: { active: $data === $parent.activeLink() }" class="navlink af_goLink">LOADING</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

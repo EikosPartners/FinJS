@@ -1,0 +1,21 @@
+{
+    "type": "adapter",
+    "children": [
+        {
+            "type": "emsblotter_blotter",
+            "children": [
+                {
+                    "type": "slickGrid"
+                },
+                {
+                    "type": "themeEditorPopup"
+                }
+            ]
+        }
+    ]
+}
+         
+
+
+
+

@@ -1,0 +1,21 @@
+#use a prebuilt install as a base
+FROM node:boron
+
+#where were going to do the install
+WORKDIR /install
+
+#copy over our package
+COPY package.json .
+
+#install
+RUN npm install 
+
+#copy everything else
+COPY . .
+
+EXPOSE 3000
+
+CMD "npm" "start"
+
+
+

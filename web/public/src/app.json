@@ -1,0 +1,29 @@
+{
+    "startup_app": {
+        "name": "FinJS Blotter - localhost",
+        "url": "http://localhost:3000/",
+        "uuid": "finjs_blotter_localhost",
+        "applicationIcon": "http://localhost:3000/images/eikos-logo-multi.ico",
+        "autoShow": true,
+        "defaultWidth": 600,
+        "defaultHeight": 80,
+        "minWidth": 400,
+        "minHeight": 80,
+        "maxWidth": 600,
+        "maxHeight": 80,
+        "defaultCentered": true,
+        "alwaysOnTop": false,
+        "resizable": true,
+        "frame": false,
+        "saveWindowState": false
+    },
+    "runtime": {
+        "version": "stable"
+    },
+    "shortcut": {
+        "company": "Eikos Partners",
+        "description": "FinJS Blotter - localhost:3000",
+        "icon": "http://localhost:3000/images/eikos-logo-multi.ico",
+        "name": "FinJS Blotter - localhost"
+    }
+}

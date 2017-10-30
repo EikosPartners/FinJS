@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>Eikos Partners Blotter Demonstration Installer</title>
+    <link id="page_favicon" rel="icon" type="image/x-ico" href="images/base/favicon.ico">
+
+    <style type="text/css">
+        body {
+            background: black;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+        }
+
+        a:link, a:visited {
+            color: #f3d311;
+            text-decoration: underline;
+        }
+
+        h2 {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            width: 1000px;
+        }
+        h2 img {
+            height: 40px;
+            width: 40px;
+            padding-right: 15px;
+            vertical-align: middle;
+        }    
+
+        h4 {
+            color: #ddd;
+        }    
+
+        span {
+            margin-top: 0;
+            padding-right: 40px;
+            font-size: small;
+        }
+
+        input {
+            background: #f3d311;
+            color: black;
+            font-weight: bold;
+            font-size: large;
+            height: 35px;
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 150%            
+        }
+
+        span {
+            font-size: large;
+            margin-left: 15px;
+        }
+
+        iframe {
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 60px;
+            text-align: center;
+            display: block;
+        }
+
+        .spanOS {
+            letter-spacing: 2px;
+            margin-left: 5px;
+            text-decoration: underline;
+        }
+
+        .divContent {
+            background: #202020;
+            width: 100%;
+            padding: 20px 0;
+            margin: 10px 0;
+        }
+
+        .divContentInner{
+            width: 1000px;
+            margin: auto;
+        }
+
+        .divDescription {
+            margin-left: 10px;
+            margin-bottom: 30px;            
+            margin-top: 30px;
+        }
+        .divDescription img {
+            max-width: 800px;
+            position:absolute;
+            margin:auto;
+            top:0;right:0;bottom:0;left:0;    
+        }        
+
+        .divImgWrapper {
+            height: 300px;
+            position:relative;
+        }        
+
+        .divButton {
+            margin-left: 20px;
+        }
+
+        .divElectrons {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        .divElectrons div {
+            margin-bottom: 5px;
+        }
+        .divElectrons a {
+            font-size: larger;
+            margin-left: 5px;
+        }
+
+        .divFooter {
+            width: 1000px;
+            margin: auto;
+        }
+
+        .divFooterLeft {
+            float: left;
+        }
+        .divFooterLeft a:link, .divFooterLeft a:visited {
+            color: #b5b5b5;
+            text-decoration: underline;
+        }
+
+        .divFooterRight {
+            float: right;
+            color: #b5b5b5;
+        }
+
+        .divSection {
+            margin-bottom: 50px;
+        }
+        .divSectionHeader {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: xx-large;
+            color: #93A4B0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h2>
+        <img src="images/eikos-logo-multi.ico" alt="logo" />
+        Eikos Partners Blotter Demonstration
+    </h2>
+
+    <div class="divContent">
+        <div class="divContentInner">
+
+            <div class="divSection">
+                <div class="divSectionHeader"> 
+                    The Project
+                </div>
+                
+                <div class="divDescription">             
+                    <p>
+                        This project provides a comparison of HTML/JavaScript to the Microsoft Windows Presentation Foundation (WPF) 
+                        in desktop applications. The HTML versions utilize the packages 
+                        <a target="_blank" href="https://github.com/EikosPartners/scalejs">scalejs</a> and 
+                        <a target="_blank" href="https://github.com/EikosPartners/windowmanagerjs">windowmanagerjs</a>
+                        and can be ran on the desktop inside the containers <a target="_blank" href="http://www.openfin.co">OpenFin</a> 
+                        or <a target="_blank" href="http://electron.atom.io/">Electron</a> or it can be viewed inside any browser - all 
+                        with +99% code reuse.  The WPF version utilizes a fork of the CodePlex package 
+                        <a target="_blank" href="http://fastwpfgrid.codeplex.com/SourceControl/network/forks/aesalazar/FastWpfGrid">FastWPFGrid</a>.
+                    </p>
+
+                    <div class="divImgWrapper"> 
+                        <a href="images/BlotterScreeny.gif" target="_blank">
+                            <img src="images/BlotterScreeny.gif" alt="Blotter Screen Shot" >
+                        </a> 
+                    </div>
+                                    
+                </div>
+            </div>
+
+            <div class="divSection">
+                <div class="divSectionHeader"> 
+                    Presentation
+                </div>
+
+                <div class="divDescription">
+                    <p>
+                        This application was presented at the October 2016 FinJS Event hosted by OpenFin in New York City.  David Lattimore-Gay, CTO of Eikos
+                        Partners, provides a side-by-side comparison and explains the differences in performance and scalability:
+                    </p>
+
+                    <iframe width="800" height="450"
+                            src="https://www.youtube.com/embed/ykq8ltnPd34?list=PLwg9Lof7il0frKHsEYHcdEZYuwZJRh2ub"
+                            frameborder="0" allowfullscreen>
+                    </iframe>
+
+                </div>
+            </div>
+            
+
+            <div class="divSection">
+                <div class="divSectionHeader"> 
+                    Downloads
+                </div>            
+
+                <div class="divDescription">
+                    <h4>Runtime Specific Versions:</h4>
+
+                    <div class="divButton">
+                        <input type="button" value="Browser" onclick='openWeb();' />
+                        <span>Browser Version</span>
+                    </div>
+
+                    <div class="divButton">
+                        <input type="button" value="OpenFin" onclick='launchOpenFinInstall();' />
+                        <span>OpenFin Desktop (currently Windows only)</span>
+                    </div>
+
+                    <div class="divButton">
+                        <input type="button" value="WPF" onclick='launchWpfInstall();' />
+                        <span>Windows WPF Desktop</span>
+                    </div>
+
+                    <div id="divElectronDetect" class="divButton">
+                        <input style="float:left;" type="button" value="Electron" onclick='launchElectronInstall();' />
+                        <div style="padding-top: 7px;">
+                            <span id="spanElectronDetect" >Electron Desktop for your Operating System</span> </br>
+                            <span id="spanElectronDetectMac" style="font-size:80%;" >(Note: MacOS app not yet digitally signed; run with right-click > open)</span>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+
+                </div>
+
+                <div class="divDescription">
+
+                    <h4>Electron Operating System Specific Versions:</h4>
+
+                    <div class="divElectrons">
+                        <div><a href="/install/electron?windows">Electron - Windows</a></div>
+                        <div><a href="/install/electron?macos">Electron - MacOS</a></div>
+                        <div><a href="/install/electron?linux" >Electron - Linux</a></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divFooter">
+        <div class="divFooterLeft">
+            <a target="_blank" href="http://www.eikospartners.com/">www.eikospartners.com</a>
+        </div>
+
+        <div class="divFooterRight">
+            ©2017 Eikos Partners. All Rights Reserved.
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var osdetect;
+    var platform = navigator.platform.toLowerCase();
+
+    if (platform.indexOf("win") >= 0)
+        osdetect="Windows";
+    else if (platform.indexOf("mac") >= 0)
+        osdetect = "MacOS";
+    else if (platform.indexOf("linux") >= 0)
+        osdetect = "Linux";
+
+    if (osdetect) {
+        document.getElementById("spanElectronDetect").innerHTML += ": <strong class='spanOS'>" + osdetect + "</strong></i>";
+        if (osdetect !== "MacOS") {
+            document.getElementById("spanElectronDetectMac").style.display = "none";
+        } else {
+            document.getElementById("spanElectronDetectMac").style.display = null;
+        }
+    } else {
+        document.getElementById("divElectronDetect").style.display = "none";
+    }
+
+    function openWeb() {
+        var hostname = location.hostname;
+        var port = location.port.length > 0 ? ":" + location.port : "";
+        var url = "http://" + hostname + port + "/";
+        window.open(url);
+    }
+
+    function launchOpenFinInstall() {
+        var hostname = location.hostname;
+        var port = location.port.length > 0 ? "%3A" + location.port : "";
+        var url = "https://install.openfin.co/download/?config=http%3A%2F%2F" + hostname + port + "%2Fapp.json";
+        window.open(url);
+    }
+
+    function launchWpfInstall() {
+        window.open(location.origin + "/wpf/setup.exe");
+    }
+
+    function launchElectronInstall() {
+        window.open(location.origin + "/install/electron?" + osdetect.toLowerCase());
+    }
+
+</script>

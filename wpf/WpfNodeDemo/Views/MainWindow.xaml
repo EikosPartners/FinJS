@@ -1,0 +1,168 @@
+﻿<Window x:Class="WpfNodeDemo.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:viewModels="clr-namespace:WpfNodeDemo.ViewModels"
+        xmlns:behaviors="clr-namespace:WpfNodeDemo.Behaviors"
+        xmlns:control="clr-namespace:WpfNodeDemo.Controls"
+        xmlns:fastWpfGrid="clr-namespace:FastWpfGrid;assembly=FastWpfGrid"
+        mc:Ignorable="d" WindowStyle="None"
+        Title="Blotter 1" Height="400" Width="1150">
+
+    <Window.DataContext>
+        <viewModels:MainViewModel />
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding ConnectCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Dictionaries/MainDictionary.xaml"/>
+                <ResourceDictionary Source="../Dictionaries/ScrollBarDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <!-- META DATA ROW -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Foreground" Value="{StaticResource TitleTextBrush}" />
+                    <Setter Property="FontFamily" Value="Arial" />
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Margin="1,1,0,1">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="Records {0} - {1}">
+                        <Binding Path="TopRowNumber"/>
+                        <Binding Path="BottomRowNumber" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            
+            <Separator Style="{StaticResource VerticalSeparatorStyle}"/>
+            
+            <TextBlock Text="{Binding TotalCount, StringFormat='Total Row Count: {0}'}" />
+            
+            <Separator Style="{StaticResource VerticalSeparatorStyle}"/>
+            
+            <TextBlock Text="{Binding FilteredCount, StringFormat='Filtered Row Count: {0}'}" />
+
+        </StackPanel>
+
+        <!-- DATA GRID -->
+        <Grid Grid.Row="1">
+            <!-- MAIN GRID -->
+            <fastWpfGrid:FastGridControl  
+                Margin="-7,0,-6,-7"
+                MinColumnWidthOverride="30"                          
+                Model="{Binding GridModel}"
+                CellFontSize="15"
+                CellPaddingHorizontal="6"
+                BackgroundColor="{StaticResource GridBackgroundColor}"
+                SelectedColor="{x:Null}"
+                HeaderCurrentBackground="{StaticResource GridHeaderCurrentBackground}"
+                MouseOverRowColor="{StaticResource GridMouseOverRowColor}"
+                CellFontColor="{StaticResource GridCellFontColor}"
+                GridLineColor="{StaticResource GridLineColor}"
+                HeaderBackground="{StaticResource GridHeaderBackgroundColor}"
+                HeaderFontColor="{StaticResource GridHeaderFontColor}"
+                HeaderFilterFontColor="{StaticResource GridHeaderFilterFontColor}"
+                AlternatingColors="{StaticResource GridAlternatingColorArray}"
+                HeaderWidth="1"
+                IsVerticalScrollDisabled="True"
+                IsDragScrollDisabled="True"
+                IsColumnFilterEnabled="True"
+                UseClearType="True">
+
+                <i:Interaction.Behaviors>
+                    <behaviors:AvailableRowCountBehavior
+                        VisibleRowCount="{Binding PageRowCount}" />
+
+                    <behaviors:SyncScrollPositionBehavior
+                        IsScrolling="{Binding IsStreamPaused}"
+                        ScrollBar="{Binding ElementName=VerticalScrollBar}" />
+
+                    <behaviors:ColumnSortBehavior
+                        GridSortIndicator="{Binding ElementName=SortIndicator}"
+                        ColumnName="{Binding SortColumnName}"
+                        CurrentRowNumber="{Binding ScrolledRowNumber}"
+                        ColumnSortingDirection="{Binding SortDirection}" />
+
+                    <behaviors:ColumnFilterBehavior
+                        ScrolledRowNumber ="{Binding ScrolledRowNumber}"
+                        AddFilterCommand="{Binding AddFilterCommand}"/>
+                </i:Interaction.Behaviors>
+
+                <fastWpfGrid:FastGridControl.Resources>
+                     <!--HIDE VERTICAL SCROLL BAR--> 
+                    <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource {x:Type ScrollBar}}">
+                        <Style.Triggers>
+                            <Trigger Property="Orientation" Value="Vertical">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Horizontal">
+                                <Setter Property="BorderThickness" Value="2,0"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource BorderLineBrush}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </fastWpfGrid:FastGridControl.Resources>
+
+            </fastWpfGrid:FastGridControl>
+
+            <!-- SORT INDICATOR -->
+            <control:GridSortIndicator
+                x:Name="SortIndicator"
+                SortingDirection="{Binding SortDirection}"
+                Height="5" Width="10"
+                HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+            <!-- CUSTOM VERTICAL SCROLL BAR -->
+            <ScrollBar x:Name="VerticalScrollBar" 
+                       BorderThickness="1,0" 
+                       BorderBrush="{StaticResource BorderLineBrush}"
+                       Orientation="Vertical"
+                       HorizontalAlignment="Right"
+                       Margin="0,54,-5,8" 
+                       Minimum="0"
+                       Maximum="{Binding FilteredCount}"
+                       SmallChange="1"
+                       LargeChange="10"
+                       Value="{Binding ScrolledRowNumber, Mode=TwoWay}"
+                       IsEnabled="{Binding IsConnected}"/>
+
+            <!-- BUSY INDICATOR -->
+            <control:DualCogs 
+                Visibility="{Binding IsStreamPaused, Converter={StaticResource BooleanToVisibilityConverter}}"
+                CogsForeground="LightYellow"
+                CogsSpeed="5"
+                Opacity="0.15"
+                Margin="0,40,0,0"
+                Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Grid}, Path=ActualWidth, Converter={StaticResource SpinnerWidthFactorConverter }}"
+                Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}" />
+        </Grid>
+
+        <!-- UI BOG TEST SPINNER -->
+        <Rectangle Style="{StaticResource SpinningRectangle}"
+                   Visibility="Collapsed"
+                   Grid.Row="1"
+                   Margin="10,0,0,20"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"/>
+    </Grid>
+</Window>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <title>OpenFin Server Settings</title>
+    <meta name="description" content="FinJS Demo Server Settings">
+    <meta name="author" content="EikosPartners">
+
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div>
+        <label for="buildtime">Simulation Step Interval: </label>
+        <input id="buildtime" name="buildtime" type="range" min="5" max="200" value="[[=model.buildIntervalMs]]" oninput="updateSettings()">
+        <input id="buildtime-text" style="width: 50px; text-align:center;" onchange="updateInputs()"></input>
+    </div>
+
+    <div>
+        <label for="viewtime">View Update Interval: </label>
+        <input id="viewtime" name="viewtime" type="range" min="50" max="1000" value="[[=model.viewUpdateIntervalMs]]" oninput="updateSettings()">
+        <input id="viewtime-text" style="width: 50px; text-align:center;" onchange="updateInputs()"></input>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="messageEncode">Encode Orders Messages: </label>
+        <input id="messageEncode" name="messageEncode" type="checkbox" onclick="changeEncoding()">
+        <span style="display:none;" id="messageEncode-text">[[=model.isOrdersMessageEncoded]]</span>
+    </div>    
+
+    <br>
+    
+    <div>
+        <button onclick="resetDB()">Reset Simulation</button>
+    </div>
+
+    <div style="margin:20px 0;">
+        <label style="display:none;color:red;" id="prodReadOnly">*Production server is set to read-only; changes to these settings will be ignored.</label>
+    </div>    
+
+    <script type="text/javascript">
+        var messageEncodeEl = document.getElementById("messageEncode");
+        var messageEncodeTextEl = document.getElementById("messageEncode-text");
+        var buildtimeEl = document.getElementById("buildtime");
+        var buildtimeTextEl = document.getElementById("buildtime-text");
+        var viewtimeEl = document.getElementById("viewtime");
+        var viewtimeTextEl = document.getElementById("viewtime-text");
+        var prodReadOnlyEl = document.getElementById("prodReadOnly");
+
+        function updateInputs() {
+            if (isNaN(buildtimeTextEl.value)){
+                console.error(buildtimeTextEl.value + " is not a number!");
+                buildtimeTextEl.value = buildtimeEl.value;
+                return;
+            }
+
+            if (isNaN(viewtimeTextEl.value)){
+                console.error(viewtimeTextEl.value + " is not a number!");
+                viewtimeTextEl.value = viewtimeEl.value;
+                return;
+            }
+
+            var buildTime = parseInt(buildtimeTextEl.value);
+            if (buildTime > 200) buildTime = 200;
+            if (buildTime < 5) buildTime = 5;
+            buildtimeEl.value = buildTime;
+                
+            var viewTime = parseInt(viewtimeTextEl.value);
+            if (viewTime > 1000) viewTime = 1000;
+            if (viewTime < 50) viewTime = 50;
+            viewtimeEl.value = parseInt(viewTime);
+
+            updateSettings();
+        }
+
+        function updateSettings() {
+            buildtimeTextEl.value = buildtimeEl.value;
+            viewtimeTextEl.value = viewtimeEl.value;
+
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function() {
+                if (request.readyState == XMLHttpRequest.DONE) {
+                    var resp = JSON.parse(request.responseText);
+                    if (!resp || !resp.ok) {
+                        prodReadOnlyEl.style.display = "";
+                        if (resp.message)
+                            console.error(resp.message);
+                    }
+                }
+            }
+
+            request.open("GET", "_settings?buildIntervalMs=" + buildtimeEl.value 
+                                + "&viewUpdateIntervalMs=" + viewtimeEl.value
+                                + "&isOrdersMessageEncoded=" + messageEncodeTextEl.innerText, true);
+            request.send(null);
+        }
+
+        function resetDB() {
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function() {
+                if (request.readyState == XMLHttpRequest.DONE) {
+                    var resp = JSON.parse(request.responseText);
+                    if (!resp || !resp.ok)
+                        prodReadOnlyEl.style.display = "";
+                        if (resp.message)
+                            console.error(resp.message);                        
+                }
+            }
+
+            request.open("GET", "_reset", true);
+            request.send(null);
+        }
+
+        function changeEncoding() {
+            messageEncodeTextEl.innerText = messageEncodeEl.checked;
+            updateSettings();
+        }
+
+        messageEncodeEl.checked = messageEncodeTextEl.innerText === "true" ? true : false;
+        updateSettings();    
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<div id="themeEditorPopup_template">
+	<div id="theme-editor-window">
+		<div class="ui-widget-header">Theme Editor</div>
+		<div class="iconClose ui-ignore-drag" data-bind="click: closeEditor">
+			<svg viewBox="-0.1 -0.1 1.2 1.2">
+				<use xlink:href="../images/base/iconsVector.svg#iconClose"></use>
+  			</svg>				
+		</div>
+
+		<!-- ELEMENT LIST -->
+	    <div style="float: left; display: inline-block; height: calc(100% - 23px); overflow: auto; width: 310px">
+	        <table border="0" style="margin-right:10px; width: 100%; border-collapse: collapse;">
+	            <tbody data-bind="foreach: elements">
+	                <tr data-bind="css: { selected: $parents[0].currentElement().varName === varName }, click: $parents[0].changeCurrentElement($data)">
+	                    <td style="width: 10px">
+	                        <span data-bind="visible: isDirty" style="margin-left: 4px;">*</span>
+	                    </td>
+	                    <td>
+	                        <span data-bind="text: name"></span>
+	                    </td>
+	                    <td style="position:relative; width: 54px;">
+	                        <div data-bind="style: { backgroundColor: obs }" class="themeColor"></div>
+	                    </td>
+	                </tr>
+	            </tbody>
+	        </table>
+	        <div data-divider></div>
+	    </div>
+
+	    <div class="offsetBackground">
+	        <!-- COLOR SELECTOR -->
+	        <div class="themeControlsGroup" style="border-bottom: 0;">
+	            <div class="themeControlTitle" style="">COLOR SELECTOR</div>
+<!-- 	            <div class="validationFields" style="margin-left: 20px; margin-bottom: 10px;">
+	                <label for="hexInput" style="display: inline-block;" >Hex:</label>
+	                <input id="hexInput" type="text" data-bind="value: hexInput, valueUpdate: 'input'" style="display: inline-block; width: auto;" />
+	                <button title="Undo the selected element." data-bind="click: undoCurrentElement, enable: elementHasUndo" class="button">UNDO</button>
+	                <button title="Reset the selected element." data-bind="click: resetCurrentElement, enable: elementHasUndo" class="button">RESET</button>
+	            </div> -->
+	            <div data-bind="colorPickerBinding: { }"></div>
+
+	        </div>
+
+	    </div>
+	
+	</div>
+</div>

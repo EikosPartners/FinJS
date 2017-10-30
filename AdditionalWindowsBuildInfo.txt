@@ -1,0 +1,5 @@
+Notes on a windows build environment.
+
+1) Install node & npm  -- tested version is v6.11.2 (https://nodejs.org/en/download/)
+2) Install build tools
+	npm install --global windows-build-tools

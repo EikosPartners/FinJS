@@ -1,0 +1,151 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="clr-namespace:WpfNodeDemo.Converters"
+	x:Class="WpfNodeDemo.Controls.DualCogs"
+	x:Name="UserControl"
+	mc:Ignorable="d" d:DesignWidth="50" d:DesignHeight="50">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Dictionaries/SpinnerCogPathsDictionary.xaml" />
+
+                <ResourceDictionary >
+                    <converters:NumberMultipliedByFactorConverter 
+                        x:Key="ConverterCanvasSizeHW" 
+                        Factor="0.58" />
+                    <converters:NumberMultipliedByFactorConverter
+                        x:Key="ConverterCanvasSizeLR1" 
+                        Factor="0.02" />
+                    <converters:NumberMultipliedByFactorConverter 
+                        x:Key="ConverterCanvasSizeLR2" 
+                        Factor="0.41" />
+
+                    <converters:KeyTimeMultiplierConverter
+                        x:Key="ConverterKeyTimeMultiplier1"
+                        KeyTime="00:00:00"/>
+                    <converters:KeyTimeMultiplierConverter
+                        x:Key="ConverterKeyTimeMultiplier2"
+                        KeyTime="00:00:05"/>
+                    <converters:KeyTimeMultiplierConverter
+                        x:Key="ConverterKeyTimeMultiplier3"
+                        KeyTime="00:00:10"/>                    
+
+                    <Storyboard x:Key="SpinnerStoryboard"  RepeatBehavior="Forever" >
+                        <DoubleAnimationUsingKeyFrames 
+                            BeginTime="00:00:00" 
+                            Storyboard.TargetName="TopCog" 
+                            Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                            <EasingDoubleKeyFrame 
+                                Value="0" 
+                                KeyTime="{Binding RelativeSource={RelativeSource FindAncestor
+                                          , AncestorType=UserControl}
+                                          , Path=CogsSpeed
+                                          , Converter={StaticResource ConverterKeyTimeMultiplier1} }"/>
+                            <EasingDoubleKeyFrame 
+                                Value="-180"                                 
+                                KeyTime="{Binding RelativeSource={RelativeSource FindAncestor
+                                          , AncestorType=UserControl}
+                                          , Path=CogsSpeed
+                                          , Converter={StaticResource ConverterKeyTimeMultiplier2} }"/>
+                            <EasingDoubleKeyFrame 
+                                Value="-359" 
+                                KeyTime="{Binding RelativeSource={RelativeSource FindAncestor
+                                          , AncestorType=UserControl}
+                                          , Path=CogsSpeed
+                                          , Converter={StaticResource ConverterKeyTimeMultiplier3} }"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames 
+                            BeginTime="00:00:00" 
+                            Storyboard.TargetName="BottomCog" 
+                            Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+
+                            <EasingDoubleKeyFrame 
+                                Value="15" 
+                                KeyTime="{Binding RelativeSource={RelativeSource FindAncestor
+                                          , AncestorType=UserControl}
+                                          , Path=CogsSpeed
+                                          , Converter={StaticResource ConverterKeyTimeMultiplier1} }"/>
+                            <EasingDoubleKeyFrame 
+                                Value="195"                                 
+                                KeyTime="{Binding RelativeSource={RelativeSource FindAncestor
+                                          , AncestorType=UserControl}
+                                          , Path=CogsSpeed
+                                          , Converter={StaticResource ConverterKeyTimeMultiplier2} }"/>
+                            <EasingDoubleKeyFrame 
+                                Value="374" 
+                                KeyTime="{Binding RelativeSource={RelativeSource FindAncestor
+                                          , AncestorType=UserControl}
+                                          , Path=CogsSpeed
+                                          , Converter={StaticResource ConverterKeyTimeMultiplier3} }"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </ResourceDictionary >
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource SpinnerStoryboard}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Canvas x:Name="SpinnerCogsCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        <Path x:Name="TopCog"
+              Data="{StaticResource CogPath}" 
+			  Stroke="{Binding Path=CogsStroke,ElementName=UserControl}" 
+			  Fill="{Binding Path=CogsForeground,ElementName=UserControl}" 
+              Stretch="Fill"
+              UseLayoutRounding="False" 
+              RenderTransformOrigin="0.5,0.5"
+			  Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, 
+                        Path=ActualWidth,Converter={StaticResource ConverterCanvasSizeHW}}" 
+			  Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, 
+                        Path=ActualHeight,Converter={StaticResource ConverterCanvasSizeHW}}" 
+			  Canvas.Left="{Binding RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, 
+                            Path=ActualWidth,Converter={StaticResource ConverterCanvasSizeLR1}}" 
+			  Canvas.Top="{Binding RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, 
+                            Path=ActualHeight,Converter={StaticResource ConverterCanvasSizeLR1}}" >
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform />
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>
+
+        <Path x:Name="BottomCog"
+              Data="{StaticResource CogPath}" 
+			  Stroke="{Binding Path=CogsStroke,ElementName=UserControl}" 
+              Fill="{Binding Path=CogsForeground,ElementName=UserControl}" 
+              Stretch="Fill" SnapsToDevicePixels="True"
+              RenderTransformOrigin="0.5,0.5" 
+              UseLayoutRounding="False" 
+			  Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, 
+                        Path=ActualWidth,Converter={StaticResource ConverterCanvasSizeHW}}" 
+			  Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, 
+                        Path=ActualHeight,Converter={StaticResource ConverterCanvasSizeHW}}" 
+			  Canvas.Left="{Binding RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, 
+                            Path=ActualWidth,Converter={StaticResource ConverterCanvasSizeLR2}}" 
+			  Canvas.Top="{Binding RelativeSource={RelativeSource AncestorType={x:Type Canvas}}, 
+                            Path=ActualHeight,Converter={StaticResource ConverterCanvasSizeLR2}}"  >
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="15"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>
+    </Canvas>
+</UserControl>

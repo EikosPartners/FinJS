@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="BlotterBackendService" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+   <ServiceTypes>
+      <StatelessServiceType ServiceTypeName="BlotterBackendService" UseImplicitHost="true">
+         <Extensions>
+            <Extension Name="__GeneratedServiceType__">
+               <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
+                  <DefaultService Name="BlotterBackendServiceService" />
+                  <ServiceEndpoint Name="BlotterBackendServiceTypeEndpoint" />
+               </GeneratedNames>
+            </Extension>
+         </Extensions>
+      </StatelessServiceType>
+   </ServiceTypes>
+   <CodePackage Name="C" Version="1.0">
+      <EntryPoint>
+         <ExeHost>
+            <Program>node.exe</Program>
+            <Arguments>./app.js</Arguments>
+            <WorkingFolder>CodePackage</WorkingFolder>
+			<ConsoleRedirection FileRetentionCount="5" FileMaxSizeInKb="20048"/>
+         </ExeHost>
+      </EntryPoint>
+	  <EnvironmentVariables>
+		<EnvironmentVariable Name="MONGO_HOSTNAME_PORT" Value="localhost:32770"/>
+    </EnvironmentVariables>
+   </CodePackage>
+   <Resources>
+      <Endpoints>
+         <Endpoint Name="BlotterBackendServiceTypeEndpoint" Protocol="http" Port="4080" Type="Input" />
+      </Endpoints>
+   </Resources>
+</ServiceManifest>

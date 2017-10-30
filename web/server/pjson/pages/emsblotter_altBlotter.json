@@ -1,0 +1,14 @@
+{
+    "type": "adapter",
+    "children": [
+        {
+            "type": "emsblotter_altBlotter",
+            "children": [
+                {
+                    "type": "dataTablesGrid"
+                }
+            ]
+        }
+    ]
+}
+         

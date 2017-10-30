@@ -1,0 +1,33 @@
+#run docker-compose up --build 
+#or  docker-compose up
+version: '2'
+services:
+  web:
+    build: ./web
+    restart: always 
+#    volumes:
+#      - c:/deploy/docker:/install
+    ports:
+      - 3001:3000
+    links:
+      - server
+#  volume: 
+  server:
+    build: ./server
+    restart: always 
+    environment:
+      MONGO_HOSTNAME_PORT : mongo_db_1:27017   
+#    volumes:
+#    - c:/deploy/docker:/install
+#   we need to make port 4080 public as out web browser will be running out of the docker container - but needs to connect a websocket into it.    
+    ports: 
+      - 4080:4080   
+    links:
+      - mongo_db:mongo
+  mongo_db:
+    image: mongo
+    restart: always 
+    ports:
+      - 27017
+#    volumes:
+#    - c:/deploy/docker:/install
