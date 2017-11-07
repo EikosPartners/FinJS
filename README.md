@@ -6,6 +6,9 @@ Complied installation packages can be download from here if you wish to avoid ha
 
 * <a target="_blank" href="http://blotter.eikospartners.com/install">http://blotter.eikospartners.com/</a>
 
+The code can be found in our github repository
+https://github.com/EikosPartners/FinJS
+
 There are three (3) core components to this repo:
 
 1. Server - The node.js database server which provides the simulation data via WebSockets (\server).
