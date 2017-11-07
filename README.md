@@ -1,6 +1,6 @@
-# FinJS Demo Application - WPF vs WEB Technologies
+# JSCatalyst Demo Application - WPF vs WEB Technologies
 
-This is a project written for the the Eikos Partners presentation at the New York FinJS Event on October 6 2016.  It compares the performace of two (2) applications, one written in WPF and .NET and the other in OpenFin and HTML5.  A recording of the presentation can be viewed on YouTube: [FinJS Video](https://www.youtube.com/watch?v=ykq8ltnPd34&list=PLwg9Lof7il0frKHsEYHcdEZYuwZJRh2ub)
+This project was written for the EikosPartners presentation at the New York FinJS Event on October 6 2016.  It compares the performance of two (2) applications, one written in WPF and .NET and the other in OpenFin and HTML5.  A recording of the presentation can be viewed on YouTube: [FinJS Video](https://www.youtube.com/watch?v=ykq8ltnPd34&list=PLwg9Lof7il0frKHsEYHcdEZYuwZJRh2ub)
 
 Complied installation packages can be download from here if you wish to avoid having to run via npm:
 
@@ -16,6 +16,6 @@ There are three (3) core components to this repo:
 
 Each of the above referenced folders contain their own README.md file with instruction on how to set up and start each.  The basic steps to start after setup is complete are:
 
-* Start the backend server using `server\npm start`
+* Start the back-end server using `server\npm start`
 * Start the web server using `\web\npm start` and connect using the OpenFin or Electron application or via the browser.
-* Optionally, the WPF project can be ran to connect to the same backend for comparison.
+* Optionally, the WPF project can be ran to connect to the same back-end services for comparison.
